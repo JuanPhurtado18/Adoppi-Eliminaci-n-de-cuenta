@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adoppi — Eliminación de cuenta</title>
+  <style>
+    :root {
+      --primary: #7C3AED;
+      --primary-light: #f3eeff;
+      --error: #EF4444;
+      --text: #111827;
+      --text2: #6B7280;
+      --divider: #E5E7EB;
+      --bg: #F9FAFB;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    header .logo {
+      width: 56px;
+      height: 56px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    header p {
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    main {
+      max-width: 680px;
+      margin: 32px auto;
+      padding: 0 16px 60px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--divider);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card h2 .icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary-light);
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .card p, .card li {
+      font-size: 14px;
+      color: var(--text2);
+    }
+
+    .card ol, .card ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .card li {
+      margin-bottom: 6px;
+    }
+
+    .step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-text strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .step-text span {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .data-table th {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--divider);
+      color: var(--text2);
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-delete {
+      background: #FEE2E2;
+      color: var(--error);
+    }
+
+    .badge-keep {
+      background: #D1FAE5;
+      color: #059669;
+    }
+
+    .contact-box {
+      background: var(--primary-light);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .contact-box .mail-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-box a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .contact-box p {
+      font-size: 13px;
+      color: var(--text2);
+      margin-top: 2px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text2);
+      padding: 20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --text: #F9FAFB;
+        --text2: #9CA3AF;
+        --divider: #374151;
+        --primary-light: #1e1040;
+      }
+      .card { background: #1F2937; }
+      header { background: #5b21b6; }
+      .data-table th { background: #1e1040; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🐾</div>
+  <h1>Adoppi</h1>
+  <p>Solicitud de eliminación de cuenta</p>
+</header>
+
+<main>
+
+  <!-- Intro -->
+  <div class="card">
+    <h2><span class="icon">ℹ️</span> Sobre esta página</h2>
+    <p>
+      Adoppi es una aplicación escolar desarrollada para conectar refugios de animales
+      con personas interesadas en adoptar mascotas en Colombia.
+      En cumplimiento con las políticas de Google Play, ofrecemos a todos nuestros
+      usuarios la opción de solicitar la eliminación de su cuenta y los datos
+      asociados en cualquier momento.
+    </p>
+  </div>
+
+  <!-- Pasos -->
+  <div class="card">
+    <h2><span class="icon">📋</span> Cómo solicitar la eliminación</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <strong>Envía un correo a nuestro equipo</strong>
+        <span>Escribe a <strong>adoppi0908@gmail.com</strong> con el asunto
+        <em>"Solicitud de eliminación de cuenta"</em>.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <strong>Incluye tu información de cuenta</strong>
+        <span>Indica el correo electrónico con el que te registraste en Adoppi
+        para que podamos identificar tu cuenta.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <strong>Confirmación</strong>
+        <span>Nuestro equipo procesará tu solicitud en un plazo máximo de
+        <strong>7 días hábiles</strong> y te enviará un correo de confirmación
+        cuando los datos hayan sido eliminados.</span>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <div class="mail-icon">✉️</div>
+      <div>
+        <a href="mailto:adoppi0908@gmail.com?subject=Solicitud de eliminación de cuenta">
+          adoppi0908@gmail.com
+        </a>
+        <p>Respondemos en menos de 7 días hábiles</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Datos que se borran -->
+  <div class="card">
+    <h2><span class="icon">🗑️</span> Datos que se eliminarán</h2>
+    <p>Al procesar tu solicitud, eliminaremos permanentemente los siguientes datos:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tipo de dato</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Perfil de usuario (nombre, correo, ciudad, teléfono)</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+        <tr>
+          <td>Foto de perfil</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+        <tr>
+          <td>Conversaciones y mensajes</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+        <tr>
+          <td>Solicitudes de adopción</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+        <tr>
+          <td>Notificaciones</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+        <tr>
+          <td>Preferencias de mascotas</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+        <tr>
+          <td>Información del refugio (si aplica)</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+        <tr>
+          <td>Mascotas publicadas por el refugio (si aplica)</td>
+          <td><span class="badge badge-delete">Eliminado</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Datos que se conservan -->
+  <div class="card">
+    <h2><span class="icon">📁</span> Datos que podrían conservarse</h2>
+    <p>
+      No conservamos datos personales más allá de lo necesario. Sin embargo,
+      ciertos registros de actividad anónimos (sin información personal identificable)
+      pueden conservarse por razones de seguridad durante un máximo de
+      <strong>30 días</strong> antes de su eliminación definitiva.
+    </p>
+  </div>
+
+  <!-- Contacto -->
+  <div class="card">
+    <h2><span class="icon">📬</span> Contacto</h2>
+    <p>
+      Si tienes dudas sobre tu solicitud o el proceso de eliminación,
+      puedes contactarnos en cualquier momento:
+    </p>
+    <div class="contact-box">
+      <div class="mail-icon">✉️</div>
+      <div>
+        <a href="mailto:adoppi0908@gmail.com">adoppi0908@gmail.com</a>
+        <p>Equipo Adoppi — Colegio Rafael Navia Varón, Cali, Colombia</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Adoppi · Todos los derechos reservados · Colegio Rafael Navia Varón
+</footer>
+
+</body>
+</html>
